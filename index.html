@@ -4,61 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hieron Pyr · The Sacred Fire</title>
-  <meta name="description" content="A book about the fire that burns at the center of a fully lived life. Logos. Sophia. Pneuma. Join the community." />
+  <meta name="description" content="You are the inheritor of centuries of systematic exile from the fire. The fire was always in you." />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <!-- Cinzel for display · Libre Baskerville for body — elegant + screen-readable -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── TOKENS ─────────────────────────────────────────────────── */
     :root {
-      --ink:        #1a0f06;
-      --ash:        #3a2510;
-      --ember:      #8b4513;
       --gold:       #c8901a;
       --gold-light: #e8b84a;
+      --gold-bright: #f0c050;
       --parchment:  #faf4eb;
-      --cream:      #f5ead6;
+      --cream:      #f0e6d0;
       --smoke:      #c4b49a;
       --char:       #0d0804;
-
       --ff-display: 'Cinzel', serif;
-      --ff-body:    'Cormorant Garamond', serif;
-      --ff-text:    'EB Garamond', serif;
-
-      --max-w: 680px;
+      --ff-body:    'Libre Baskerville', serif;
+      --max-w: 620px;
       --ease:  cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ── RESET ──────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-    /* ── PAGE ───────────────────────────────────────────────────── */
     body {
       background-color: var(--char);
       color: var(--parchment);
       font-family: var(--ff-body);
-      font-size: 18px;
-      line-height: 1.7;
+      line-height: 1.75;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      font-size: clamp(15px, 2vw, 17px);
     }
 
-    /* ── FIRE CANVAS ────────────────────────────────────────────── */
+    /* ── FIRE CANVAS ─────────────────────────────────────────── */
     #fire-canvas {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.18;
+      opacity: 0.16;
     }
 
-    /* ── GRAIN OVERLAY ──────────────────────────────────────────── */
+    /* ── GRAIN ───────────────────────────────────────────────── */
     body::before {
       content: '';
       position: fixed;
@@ -69,88 +61,97 @@
       opacity: 0.35;
     }
 
-    /* ── LAYOUT ─────────────────────────────────────────────────── */
+    /* ── LAYOUT ──────────────────────────────────────────────── */
     main {
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 24px;
+      padding: 0 clamp(22px, 6vw, 52px);
     }
 
-    /* ── HEADER / FLAME MARK ────────────────────────────────────── */
+    /* ── ANIMATIONS ──────────────────────────────────────────── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HEADER ──────────────────────────────────────────────── */
     header {
       width: 100%;
       max-width: var(--max-w);
-      padding-top: 80px;
+      padding-top: clamp(52px, 9vh, 96px);
       text-align: center;
       animation: rise 1.4s var(--ease) both;
     }
 
-    .flame-mark {
-      display: inline-block;
-      font-size: 2.8rem;
-      margin-bottom: 24px;
-      animation: flicker 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 18px rgba(200, 144, 26, 0.7));
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 1;    transform: scaleY(1)    rotate(-0.5deg); }
-      20%       { opacity: 0.92; transform: scaleY(1.03) rotate(0.3deg);  }
-      40%       { opacity: 0.97; transform: scaleY(0.98) rotate(-0.2deg); }
-      60%       { opacity: 0.94; transform: scaleY(1.02) rotate(0.4deg);  }
-      80%       { opacity: 0.99; transform: scaleY(0.99) rotate(-0.1deg); }
-    }
-
-    /* ── GREEK ──────────────────────────────────────────────────── */
     .greek {
       font-family: var(--ff-display);
-      font-size: 0.7rem;
-      font-weight: 400;
+      font-size: clamp(0.62rem, 1.8vw, 0.75rem);
       letter-spacing: 0.35em;
-      text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 12px;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
-    /* ── TITLE ──────────────────────────────────────────────────── */
     h1 {
       font-family: var(--ff-display);
-      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-size: clamp(2.6rem, 9vw, 4.8rem);
       font-weight: 500;
       letter-spacing: 0.12em;
       color: var(--parchment);
-      line-height: 1.1;
-      margin-bottom: 10px;
+      line-height: 1.05;
     }
 
     .title-rule {
-      width: 60px;
+      width: 50px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
       margin: 20px auto;
     }
 
+    /* "The Sacred Fire" — substantially larger than before */
     .subtitle {
       font-family: var(--ff-body);
-      font-size: 1.05rem;
-      font-weight: 300;
+      font-size: clamp(1.3rem, 4.2vw, 2rem);
+      font-weight: 400;
       font-style: italic;
       color: var(--smoke);
       letter-spacing: 0.04em;
+      line-height: 1.3;
     }
 
-    /* ── HERACLITUS ─────────────────────────────────────────────── */
+    /* ── PROBLEM LINE ────────────────────────────────────────── */
+    .problem {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: clamp(48px, 7vh, 76px) 0 0;
+      text-align: center;
+      animation: rise 1.4s 0.25s var(--ease) both;
+    }
+
+    .problem p {
+      font-family: var(--ff-body);
+      font-size: clamp(1rem, 2.8vw, 1.15rem);
+      color: var(--cream);
+      line-height: 1.95;
+      font-weight: 400;
+    }
+
+    .problem em {
+      font-style: italic;
+      color: var(--parchment);
+    }
+
+    /* ── HERACLITUS ──────────────────────────────────────────── */
     .heraclitus {
       width: 100%;
       max-width: var(--max-w);
-      margin: 72px 0 64px;
-      padding: 48px 48px 44px;
+      margin: clamp(44px, 6vh, 64px) 0;
+      padding: clamp(28px, 5vw, 48px) clamp(20px, 5vw, 44px);
       position: relative;
-      animation: rise 1.4s 0.3s var(--ease) both;
+      animation: rise 1.4s 0.45s var(--ease) both;
     }
 
     .heraclitus::before,
@@ -164,10 +165,9 @@
     .heraclitus::before { top: 0; }
     .heraclitus::after  { bottom: 0; }
 
-    /* left ember accent */
     .heraclitus-inner {
       position: relative;
-      padding-left: 28px;
+      padding-left: clamp(14px, 4vw, 26px);
     }
     .heraclitus-inner::before {
       content: '';
@@ -179,136 +179,86 @@
 
     blockquote {
       font-family: var(--ff-body);
-      font-size: clamp(1.1rem, 2.8vw, 1.35rem);
-      font-weight: 300;
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 400;
       font-style: italic;
       color: var(--cream);
-      line-height: 1.75;
+      line-height: 1.9;
+    }
+
+    /* CITE — brighter and larger than before */
+    cite {
+      display: block;
+      margin-top: 22px;
+      font-family: var(--ff-display);
+      /* Enlarged: was ~0.62rem, now comfortably readable */
+      font-size: clamp(0.72rem, 2vw, 0.88rem);
+      font-style: normal;
+      letter-spacing: 0.22em;
+      /* Bright gold — clearly legible */
+      color: var(--gold-bright);
+      opacity: 1;
+    }
+
+    /* ── FIRE LINE ───────────────────────────────────────────── */
+    .fire-line {
+      width: 100%;
+      max-width: var(--max-w);
+      text-align: center;
+      margin: 0 0 clamp(48px, 7vh, 80px);
+      animation: rise 1.4s 0.6s var(--ease) both;
+    }
+
+    .fire-line p {
+      font-family: var(--ff-body);
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--parchment);
       letter-spacing: 0.01em;
     }
 
-    cite {
+    /* "A book · Coming soon" — brighter and larger than before */
+    .fire-line span {
       display: block;
-      margin-top: 20px;
+      margin-top: 14px;
       font-family: var(--ff-display);
-      font-size: 0.65rem;
-      font-style: normal;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      opacity: 0.7;
+      /* Enlarged: was ~0.58rem, now clearly readable */
+      font-size: clamp(0.7rem, 2vw, 0.85rem);
+      letter-spacing: 0.28em;
+      /* Bright gold — no longer dim */
+      color: var(--gold-bright);
+      opacity: 1;
     }
 
-    /* ── BODY COPY ──────────────────────────────────────────────── */
-    .copy {
-      width: 100%;
-      max-width: var(--max-w);
-      animation: rise 1.4s 0.5s var(--ease) both;
-    }
-
-    .copy p {
-      font-family: var(--ff-text);
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
-      color: var(--smoke);
-      line-height: 1.85;
-      margin-bottom: 1.4em;
-    }
-
-    .copy p:last-child { margin-bottom: 0; }
-
-    .copy strong {
-      font-weight: 500;
-      color: var(--cream);
-    }
-
-    /* ── TRIO ───────────────────────────────────────────────────── */
-    .trio {
-      width: 100%;
-      max-width: var(--max-w);
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      margin: 56px 0;
-      background: rgba(200, 144, 26, 0.15);
-      animation: rise 1.4s 0.7s var(--ease) both;
-    }
-
-    .trio-item {
-      background: rgba(13, 8, 4, 0.85);
-      padding: 32px 24px;
-      text-align: center;
-    }
-
-    .trio-glyph {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      display: block;
-      filter: drop-shadow(0 0 8px rgba(200, 144, 26, 0.5));
-    }
-
-    .trio-label {
-      font-family: var(--ff-display);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .trio-name {
-      font-family: var(--ff-body);
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--cream);
-      display: block;
-    }
-
-    /* ── FORM SECTION ───────────────────────────────────────────── */
+    /* ── FORM ────────────────────────────────────────────────── */
     .form-section {
       width: 100%;
       max-width: var(--max-w);
-      margin: 16px 0 100px;
+      margin: 0 0 clamp(64px, 10vh, 100px);
       text-align: center;
-      animation: rise 1.4s 0.9s var(--ease) both;
-    }
-
-    .form-eyebrow {
-      font-family: var(--ff-display);
-      font-size: 0.62rem;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      margin-bottom: 16px;
-      opacity: 0.8;
-    }
-
-    .form-heading {
-      font-family: var(--ff-body);
-      font-size: clamp(1.4rem, 4vw, 1.9rem);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--parchment);
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
-
-    .form-sub {
-      font-family: var(--ff-text);
-      font-size: 0.95rem;
-      color: var(--smoke);
-      margin-bottom: 36px;
-      font-style: italic;
+      animation: rise 1.4s 0.75s var(--ease) both;
     }
 
     .form-rule {
-      width: 40px;
+      width: 36px;
       height: 1px;
-      background: var(--gold);
-      margin: 0 auto 36px;
-      opacity: 0.5;
+      background: var(--gold-bright);
+      margin: 0 auto 28px;
+      opacity: 1;
+    }
+
+    .form-sub {
+      font-family: var(--ff-body);
+      font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+      color: var(--smoke);
+      margin-bottom: 32px;
+      font-style: italic;
+      line-height: 1.85;
     }
 
     form {
       display: flex;
-      gap: 0;
       max-width: 440px;
       margin: 0 auto;
     }
@@ -319,18 +269,18 @@
       border: 1px solid rgba(200, 144, 26, 0.3);
       border-right: none;
       color: var(--parchment);
-      font-family: var(--ff-text);
-      font-size: 0.95rem;
-      padding: 14px 20px;
+      font-family: var(--ff-body);
+      /* 16px minimum prevents iOS auto-zoom */
+      font-size: clamp(16px, 2.2vw, 17px);
+      padding: clamp(12px, 2vw, 15px) 18px;
       outline: none;
-      transition: border-color 0.3s var(--ease),
-                  background 0.3s var(--ease);
-      letter-spacing: 0.02em;
+      transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+      min-width: 0;
     }
 
     input[type="email"]::placeholder {
       color: var(--smoke);
-      opacity: 0.5;
+      opacity: 0.55;
       font-style: italic;
     }
 
@@ -344,15 +294,14 @@
       border: 1px solid var(--gold);
       color: var(--char);
       font-family: var(--ff-display);
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      padding: 14px 24px;
+      font-size: clamp(0.55rem, 1.6vw, 0.65rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      padding: clamp(12px, 2vw, 15px) clamp(14px, 3vw, 22px);
       cursor: pointer;
-      transition: background 0.3s var(--ease),
-                  color 0.3s var(--ease),
-                  box-shadow 0.3s var(--ease);
+      transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
       white-space: nowrap;
+      min-height: 44px;
     }
 
     button[type="submit"]:hover {
@@ -362,91 +311,93 @@
     }
 
     .form-note {
-      margin-top: 16px;
-      font-family: var(--ff-text);
-      font-size: 0.8rem;
-      color: var(--smoke);
-      opacity: 0.5;
+      margin-top: 14px;
+      font-family: var(--ff-body);
+      font-size: clamp(0.82rem, 2vw, 0.92rem);
+      color: var(--gold-bright);
+      opacity: 1;
       font-style: italic;
     }
 
-    /* ── THANK YOU STATE ────────────────────────────────────────── */
     .thankyou {
       display: none;
       font-family: var(--ff-body);
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2.8vw, 1.15rem);
       font-style: italic;
       color: var(--cream);
       padding: 20px;
       animation: rise 0.8s var(--ease) both;
     }
 
-    /* ── FOOTER ─────────────────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────────────── */
     footer {
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 0 24px 48px;
+      padding: 0 24px 44px;
     }
 
     .footer-rule {
       width: 100%;
       max-width: var(--max-w);
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(200,144,26,0.2), transparent);
-      margin: 0 auto 28px;
+      background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+      margin: 0 auto 22px;
+      opacity: 0.7;
     }
 
     .footer-text {
       font-family: var(--ff-display);
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      color: var(--smoke);
-      opacity: 0.35;
+      font-size: clamp(0.58rem, 1.6vw, 0.68rem);
+      letter-spacing: 0.28em;
+      color: var(--gold-bright);
+      opacity: 1;
     }
 
-    /* ── ANIMATIONS ─────────────────────────────────────────────── */
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
+    /* ── MOBILE ──────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      form {
+        flex-direction: column;
+        max-width: 100%;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      input[type="email"] {
+        border-right: 1px solid rgba(200, 144, 26, 0.3);
+        border-bottom: none;
+        width: 100%;
       }
-    }
-
-    /* ── RESPONSIVE ─────────────────────────────────────────────── */
-    @media (max-width: 540px) {
-      header { padding-top: 60px; }
-      .heraclitus { padding: 36px 24px 32px; }
-      .heraclitus-inner { padding-left: 20px; }
-      .trio { grid-template-columns: 1fr; }
-      .trio-item { padding: 24px; }
-      form { flex-direction: column; }
-      input[type="email"] { border-right: 1px solid rgba(200,144,26,0.3); border-bottom: none; }
-      button[type="submit"] { padding: 14px; }
+      button[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 0.62rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Animated fire background -->
   <canvas id="fire-canvas"></canvas>
 
   <main>
 
-    <!-- ── HEADER ─────────────────────────────────────────────── -->
+    <!-- HEADER -->
     <header>
-      <div class="flame-mark">🔥</div>
       <p class="greek">Ἱερὸν Πῦρ</p>
       <h1>HIERON PYR</h1>
       <div class="title-rule"></div>
       <p class="subtitle">The Sacred Fire</p>
     </header>
 
-    <!-- ── HERACLITUS ─────────────────────────────────────────── -->
+    <!-- PROBLEM LINE -->
+    <div class="problem">
+      <p>
+        If you give, serve, and care — and still wonder why
+        something essential feels just out of reach —
+        <em>you are not confused. You are not spiritually inadequate.</em>
+        You are the inheritor of centuries of systematic exile from the fire.
+      </p>
+    </div>
+
+    <!-- HERACLITUS -->
     <div class="heraclitus">
       <div class="heraclitus-inner">
         <blockquote>
@@ -458,58 +409,28 @@
       </div>
     </div>
 
-    <!-- ── BODY COPY ───────────────────────────────────────────── -->
-    <div class="copy">
-      <p>
-        There is a fire at the center of a fully lived life. Not metaphor —
-        the actual animating force that makes the difference between a life
-        that <em>works</em> and a life that <em>burns.</em>
-      </p>
-      <p>
-        Most of us have touched it. The moment of genuine clarity that arrived
-        without being reasoned toward. The encounter with another person that
-        changed something permanently. The knowing that preceded the evidence.
-        We filed these moments under coincidence, or luck, or <em>just one of
-        those things</em> — and moved on.
-      </p>
-      <p>
-        <strong>Hieron Pyr</strong> is a book about what those moments actually
-        are, why they arrive when they do, and how to build a life in which
-        they arrive more often — and matter more when they do.
-      </p>
+    <!-- THE FIRE LINE -->
+    <div class="fire-line">
+      <p>The fire was always in you.</p>
+      <span>A book · Coming soon</span>
     </div>
 
-    <!-- ── TRIO ───────────────────────────────────────────────── -->
-    <div class="trio">
-      <div class="trio-item">
-        <span class="trio-glyph">⬛</span>
-        <span class="trio-label">Logos</span>
-        <span class="trio-name">The Hearth</span>
-      </div>
-      <div class="trio-item">
-        <span class="trio-glyph">🔥</span>
-        <span class="trio-label">Sophia</span>
-        <span class="trio-name">The Fuel</span>
-      </div>
-      <div class="trio-item">
-        <span class="trio-glyph">✦</span>
-        <span class="trio-label">Pneuma</span>
-        <span class="trio-name">The Flame</span>
-      </div>
-    </div>
-
-    <!-- ── FORM ────────────────────────────────────────────────── -->
+    <!-- FORM -->
     <div class="form-section">
-      <p class="form-eyebrow">Join the Community</p>
-      <h2 class="form-heading">Honor to all traditions of the light.</h2>
       <div class="form-rule"></div>
       <p class="form-sub">
-        The book is coming. Be among the first to receive it —
+        Be among the first to receive the book —
         along with reflections, practices, and early chapters
         shared with the community as they are written.
       </p>
 
-      <form id="join-form">
+      <form
+        id="join-form"
+        action="https://buttondown.com/api/emails/embed-subscribe/bardes"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.com/bardes','popupwindow')"
+      >
         <input
           type="email"
           id="email"
@@ -532,15 +453,12 @@
 
   <footer>
     <div class="footer-rule"></div>
-    <p class="footer-text">© 2026 · HIERON PYR · THE SACRED FIRE</p>
+    <p class="footer-text">© 2026 · HIERON PYR · THE SACRED FIRE · DAVID BARDES</p>
   </footer>
 
-  <!-- ── FIRE CANVAS ANIMATION ──────────────────────────────── -->
   <script>
-    // Particle fire effect — subtle, columnar, slow-rising
     const canvas = document.getElementById('fire-canvas');
     const ctx    = canvas.getContext('2d');
-
     let W, H, particles = [];
 
     function resize() {
@@ -561,13 +479,12 @@
     class Particle {
       constructor() { this.reset(); }
       reset() {
-        // spawn along the bottom, clustered toward center
-        const spread = W * 0.35;
-        this.x   = W/2 + (Math.random() - 0.5) * spread;
-        this.y   = H + 10;
-        this.vy  = -(Math.random() * 1.2 + 0.4);
-        this.vx  = (Math.random() - 0.5) * 0.3;
-        this.r   = Math.random() * 60 + 20;
+        const spread = W * 0.32;
+        this.x    = W/2 + (Math.random() - 0.5) * spread;
+        this.y    = H + 10;
+        this.vy   = -(Math.random() * 1.2 + 0.4);
+        this.vx   = (Math.random() - 0.5) * 0.3;
+        this.r    = Math.random() * 60 + 20;
         this.life = 0;
         this.maxLife = Math.random() * 180 + 80;
         this.col  = COLORS[Math.floor(Math.random() * COLORS.length)];
@@ -579,10 +496,10 @@
         if (this.life > this.maxLife) this.reset();
       }
       draw() {
-        const t = this.life / this.maxLife;
+        const t     = this.life / this.maxLife;
         const alpha = Math.sin(t * Math.PI) * 0.55;
         const [r, g, b] = this.col;
-        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+        const grad  = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
         grad.addColorStop(0,   `rgba(${r},${g},${b},${alpha})`);
         grad.addColorStop(0.5, `rgba(${r},${g},${b},${alpha * 0.4})`);
         grad.addColorStop(1,   `rgba(${r},${g},${b},0)`);
@@ -593,10 +510,9 @@
       }
     }
 
-    // Initialise particles staggered so they don't all start at once
     for (let i = 0; i < 55; i++) {
       const p = new Particle();
-      p.life = Math.floor(Math.random() * p.maxLife);
+      p.life  = Math.floor(Math.random() * p.maxLife);
       particles.push(p);
     }
 
@@ -607,21 +523,13 @@
     }
     loop();
 
-    // ── FORM ────────────────────────────────────────────────────
-    document.getElementById('join-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      if (!email) return;
-
-      // Replace form with thank-you message
-      this.style.display = 'none';
-      document.querySelector('.form-note').style.display = 'none';
-      const ty = document.getElementById('thankyou');
-      ty.style.display = 'block';
-
-      // Here you would wire up to your email service
-      // e.g. Mailchimp, ConvertKit, Buttondown, etc.
-      console.log('Email captured:', email);
+    document.getElementById('join-form').addEventListener('submit', function() {
+      const self = this;
+      setTimeout(function() {
+        self.style.display = 'none';
+        document.querySelector('.form-note').style.display = 'none';
+        document.getElementById('thankyou').style.display = 'block';
+      }, 500);
     });
   </script>
 
