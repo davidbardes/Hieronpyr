@@ -424,13 +424,7 @@
         shared with the community as they are written.
       </p>
 
-      <form
-        id="join-form"
-        action="https://buttondown.com/api/emails/embed-subscribe/bardes"
-        method="post"
-        target="popupwindow"
-        onsubmit="window.open('https://buttondown.com/bardes','popupwindow')"
-      >
+      <form id="join-form">
         <input
           type="email"
           id="email"
@@ -523,13 +517,32 @@
     }
     loop();
 
-    document.getElementById('join-form').addEventListener('submit', function() {
-      const self = this;
-      setTimeout(function() {
-        self.style.display = 'none';
-        document.querySelector('.form-note').style.display = 'none';
-        document.getElementById('thankyou').style.display = 'block';
-      }, 500);
+    document.getElementById('join-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      if (!email) return;
+
+      const btn = this.querySelector('button[type=submit]');
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      try {
+        const data = new FormData();
+        data.append('email', email);
+        data.append('embed', '1');
+
+        await fetch('https://buttondown.com/api/emails/embed-subscribe/bardes', {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors'
+        });
+      } catch(err) {
+        // no-cors means we cannot read the response — proceed to thank you regardless
+      }
+
+      this.style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
+      document.getElementById('thankyou').style.display = 'block';
     });
   </script>
 
